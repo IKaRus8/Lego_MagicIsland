@@ -14,9 +14,14 @@ public class AbilityUI : MonoBehaviour
 	private Vector3 punchScale = new Vector3(1.2f, 1.2f);
 	private Vector3 punchStep = new Vector3(0.03f, 0.03f);
 
-	public bool CanUse { get; set; } = true;
+	public bool CanUse { get; set; }
 
-    public void CoolDawn()
+	private void Awake()
+	{
+		CanUse = true;
+	}
+
+	public void CoolDawn()
 	{
 		CanUse = false;
 

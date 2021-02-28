@@ -1,6 +1,7 @@
 ﻿using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.LEGO.Behaviours.Actions;
 using UnityEngine;
 
 public class SkillController : MonoBehaviour
@@ -23,9 +24,14 @@ public class SkillController : MonoBehaviour
         {
 			if (fireAbility.CanUse)
 			{
-				Fire(); 
+				Fire();
 			}
         }
+    }
+
+    public void OnPickUpStick(PickupAction action)
+	{
+        fireAbility.gameObject.SetActive(true);
     }
 
     private void Fire()
