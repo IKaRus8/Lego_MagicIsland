@@ -7,33 +7,36 @@ public class SkillController : MonoBehaviour
 {
     public ParticleSystem particle;
 
+    public AbilityUI fireAbility;
+
     private Camera camera => Camera.main;
 
     private Transform particleTf => transform;
 
     private Vector3 target = Vector3.zero;
 
-    RaycastHit hit;
+    private Plane groundPlane = new Plane(Vector3.up, new Vector3(0, 0, 0));
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Fire();
+			if (fireAbility.CanUse)
+			{
+				Fire(); 
+			}
         }
     }
 
     private void Fire()
     {
-        var mousePoint = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-        //var g = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        groundPlane = new Plane(Vector3.up, new Vector3(0, particleTf.position.y, 0));
 
-        var direction = mousePoint - camera.transform.position;
-
-        if (Physics.Raycast(camera.transform.position, direction, out hit))
+        if (groundPlane.Raycast(ray, out float distance))
         {
-            target = hit.point;
+            target = ray.GetPoint(distance);
             target.y = particleTf.position.y;
         }
         else
@@ -51,5 +54,7 @@ public class SkillController : MonoBehaviour
         particleTf.rotation = Quaternion.LookRotation(newDirection);
 
         particle.Play();
+
+        fireAbility.CoolDawn();
     }
 }
