@@ -13931,26 +13931,6 @@ MonoBehaviour:
   m_AudioVolume: 0.468
   m_Effect: {fileID: 6495044552919392668, guid: 173b64c55a438417294f0118f8fc367b,
     type: 3}
---- !u!114 &3387163528201896377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2647064075740723820}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2119edf0740942a580dbfaa6725e30b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Scope: 1
-  m_IconPath: Assets/LEGO/Gizmos/LEGO Behaviour Icons/Explode Action.png
-  m_FlashColour: {r: 0.6901961, g: 1.3411765, b: 0.50980395, a: 2}
-  m_Brick: {fileID: 5654102950137112239}
-  m_BrickPivotOffset: {x: -0.4001809, y: 0.5688293, z: -0.40002728}
-  m_Audio: {fileID: 8300000, guid: d70e96c66975a4723a2a230c42ce2ca2, type: 3}
-  m_AudioVolume: 0.185
-  m_Power: 10
 --- !u!114 &3203974643210262386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13971,6 +13951,26 @@ MonoBehaviour:
   m_Audio: {fileID: 8300000, guid: e4e105a988a4047bfa9eb7a4e57187a3, type: 3}
   m_AudioVolume: 1
   m_Type: 1
+--- !u!114 &3387163528201896377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2647064075740723820}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2119edf0740942a580dbfaa6725e30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Scope: 1
+  m_IconPath: Assets/LEGO/Gizmos/LEGO Behaviour Icons/Explode Action.png
+  m_FlashColour: {r: 0.6901961, g: 1.3411765, b: 0.50980395, a: 2}
+  m_Brick: {fileID: 5654102950137112239}
+  m_BrickPivotOffset: {x: -0.4001809, y: 0.5688293, z: -0.40002728}
+  m_Audio: {fileID: 8300000, guid: d70e96c66975a4723a2a230c42ce2ca2, type: 3}
+  m_AudioVolume: 0.185
+  m_Power: 10
 --- !u!1 &2652476544546073862
 GameObject:
   m_ObjectHideFlags: 0
@@ -33641,8 +33641,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.1, y: 14.09, z: 5.3}
-  m_Center: {x: 0, y: 3.97, z: 0}
+  m_Size: {x: 8.4, y: 13.31, z: 2.3}
+  m_Center: {x: 0, y: 3.97, z: -0.41}
 --- !u!1 &6435296582965548226
 GameObject:
   m_ObjectHideFlags: 0
@@ -48342,8 +48342,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3453244826810790980, guid: 5f90c7d3098fc4659b7fc9bb45df5fa7,
         type: 3}
+      propertyPath: m_Pause
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453244826810790980, guid: 5f90c7d3098fc4659b7fc9bb45df5fa7,
+        type: 3}
       propertyPath: m_Collide
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453244826810790980, guid: 5f90c7d3098fc4659b7fc9bb45df5fa7,
+        type: 3}
+      propertyPath: m_Distance
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3560168150853749624, guid: 5f90c7d3098fc4659b7fc9bb45df5fa7,
         type: 3}
@@ -48775,7 +48785,7 @@ PrefabInstance:
     - target: {fileID: 6642943919000379781, guid: 2e71bfa7eed3a41f788a600ef863e7b1,
         type: 3}
       propertyPath: m_Rotate
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6642943919000379781, guid: 2e71bfa7eed3a41f788a600ef863e7b1,
         type: 3}

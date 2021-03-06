@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.LEGO.Behaviours.Actions;
+using Unity.LEGO.Minifig;
 using UnityEngine;
+using static Unity.LEGO.Minifig.MinifigFaceAnimationController;
 
 public class SkillController : MonoBehaviour
 {
@@ -10,15 +12,31 @@ public class SkillController : MonoBehaviour
 
     public AbilityUI fireAbility;
 
-    private Camera camera => Camera.main;
+    private MinifigController minifig;
 
-    private Transform particleTf => transform;
+    private MinifigFaceAnimationController faceAnimationController;
 
     private Vector3 target = Vector3.zero;
 
     private Plane groundPlane = new Plane(Vector3.up, new Vector3(0, 0, 0));
 
-    void Update()
+    private Camera camera => Camera.main;
+
+    private Transform particleTf => transform;
+
+
+	private void Awake()
+	{
+        minifig = GetComponent<MinifigController>();
+
+        //faceAnimationController = GetComponent<MinifigFaceAnimationController>();
+
+        minifig.PlaySpecialAnimation(MinifigController.SpecialAnimation.LookingAround);
+        //faceAnimationController.PlayAnimation(FaceAnimation.Frustrated);
+
+    }
+
+	void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {

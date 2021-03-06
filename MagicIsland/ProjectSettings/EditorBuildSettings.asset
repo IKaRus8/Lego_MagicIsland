@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/LEGO/Scenes/Menu Lose.unity
     guid: 23bd42193fd3048b7b6f4dedf8f3317a
+  - enabled: 1
+    path: Assets/LEGO/Scenes/Microgame - Cannonball Bingo.unity
+    guid: 2d57ecb821412428c8bab5515ffab2d4
   m_configObjects: {}
