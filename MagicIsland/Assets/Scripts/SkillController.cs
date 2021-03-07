@@ -12,9 +12,11 @@ public class SkillController : MonoBehaviour
 
     public AbilityUI fireAbility;
 
-    private MinifigController minifig;
+    public MinifigController minifig;
 
     private MinifigFaceAnimationController faceAnimationController;
+
+    private Animator animator;
 
     private Vector3 target = Vector3.zero;
 
@@ -27,13 +29,12 @@ public class SkillController : MonoBehaviour
 
 	private void Awake()
 	{
-        minifig = GetComponent<MinifigController>();
+        animator = GetComponent<Animator>();
 
         //faceAnimationController = GetComponent<MinifigFaceAnimationController>();
 
-        minifig.PlaySpecialAnimation(MinifigController.SpecialAnimation.LookingAround);
+        //minifig.PlaySpecialAnimation(MinifigController.SpecialAnimation.LookingAround);
         //faceAnimationController.PlayAnimation(FaceAnimation.Frustrated);
-
     }
 
 	void Update()
@@ -50,6 +51,17 @@ public class SkillController : MonoBehaviour
     public void OnPickUpStick(PickupAction action)
 	{
         fireAbility.gameObject.SetActive(true);
+    }
+
+    public void SetInput(bool value)
+	{
+        minifig.SetInputEnabled(value);
+    }
+
+    public void SetAnimatorState(bool value)
+	{
+        animator.enabled = value;
+
     }
 
     private void Fire()

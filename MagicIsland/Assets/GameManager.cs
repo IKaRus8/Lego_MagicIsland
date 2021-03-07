@@ -14,39 +14,21 @@ public class GameManager : MonoBehaviour
 
 	public GameObject secondCamera;
 
-	public GameObject cutSceneTriggerGo;
-
-	public Scene caveScene;
-
-	private MinifigController minifigController;
-
-	NearbyTrigger cutSceneTrigger;
-
 	private void Awake()
 	{
-		cutSceneTrigger = cutSceneTriggerGo.GetComponentInChildren<NearbyTrigger>();
-		minifigController = player.GetComponent<MinifigController>();
-
-		cutSceneTrigger.OnActivate += CutScene;
-
 		magicStick.OnCollected += player.OnPickUpStick;
 
-		StartCoroutine(SecondCameraTimer(5));
+		//StartCoroutine(SecondCameraTimer(5));
 	}
 
 	private IEnumerator SecondCameraTimer(float time)
 	{
-		minifigController.SetInputEnabled(false);
+		player.SetInput(false);
 
 		yield return new WaitForSeconds(time);
 
 		secondCamera.SetActive(false);
 
-		minifigController.SetInputEnabled(true);
-	}
-
-	private void CutScene()
-	{
-		SceneManager.LoadScene(4);
+		player.SetInput(true);
 	}
 }

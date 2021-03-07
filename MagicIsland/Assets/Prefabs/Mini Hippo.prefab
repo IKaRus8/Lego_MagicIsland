@@ -2391,7 +2391,7 @@ GameObject:
   - component: {fileID: 1042317225918367925}
   m_Layer: 0
   m_Name: Mini Hippo
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14326,7 +14326,7 @@ MonoBehaviour:
   m_Audio: {fileID: 8300000, guid: 9374a527e83004a47aa53135284f2e78, type: 3}
   m_AudioVolume: 1
   m_Pause: 1
-  m_Repeat: 1
+  m_Repeat: 0
   m_Time: 2
   m_Collide: 0
   m_Distance: 15
@@ -14355,7 +14355,7 @@ MonoBehaviour:
   m_Repeat: 1
   m_Sense: 0
   m_SenseTag: 
-  m_Distance: 20
+  m_Distance: 25
 --- !u!1 &6166108890834735939
 GameObject:
   m_ObjectHideFlags: 0
