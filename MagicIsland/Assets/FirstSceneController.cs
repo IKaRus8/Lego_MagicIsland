@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Unity.LEGO.Behaviours.Triggers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -32,19 +31,28 @@ public class FirstSceneController : MonoBehaviour
 	[Space]
 	public GameObject consoleTrigger;
 
-	private string statueText = "Wow, statue";
-	private string elevatorText = "Wow, elevator";
-	private string robotText = "Wow, robot";
-	private string mashineText = "Wow, death";
+	[Space]
+	public GameObject dangerTrigger;
 
-	private string GoToCaveText = "Wow, robots";
-	private string GoToCave2Text = "Wow, cave";
+	private string startText = "There are many rumors about these islands. I have come here to reveal all the secrets.";
 
-	private string consoleText = "Wow, cave";
+	private string statueText = "A robot statue on the island? Interesting...";
+	private string elevatorText = "The elevator has long been destroyed, I have to find another way.";
+	private string robotText = "These are the remains of a robot, where are they from here?";
+	private string mashineText = "Ominous thing, lucky it's off.";
+
+	private string GoToCaveText = "It's better not to go to that island.";
+	private string GoToCave2Text = "It's like a cave entrance, I'll have to jump.";
+
+	private string consoleText = "The console looks working, only a few energy crystals are needed.";
+
+	private string dungeosText = "Whoa, it has become quite dangerous";
 
 	private void Awake()
 	{
-		ExitLevelTrigger.GetComponentInChildren<NearbyTrigger>().OnActivate += CutScene;
+		StartCoroutine(StartEvent(7));
+
+		ExitLevelTrigger.GetComponentInChildren<NearbyTrigger>().OnActivate += EndLevel;
 
 		statueTrigger.GetComponentInChildren<NearbyTrigger>().OnActivate += () => StartCoroutine(StatueEvent(3));
 		elevatorTrigger.GetComponentInChildren<NearbyTrigger>().OnActivate += () => StartCoroutine(ElevatorEvent(3));
@@ -53,11 +61,23 @@ public class FirstSceneController : MonoBehaviour
 		GoToCaveTrigger.GetComponentInChildren<NearbyTrigger>().OnActivate += () => StartCoroutine(GoToCaveEvent(3));
 
 		consoleTrigger.GetComponentInChildren<NearbyTrigger>().OnActivate += () => ConsoleEvent(3);
+
+		dangerTrigger.GetComponentInChildren<NearbyTrigger>().OnActivate += () => dialogController.SetText(dungeosText, 4);
 	}
 
-	private void CutScene()
+	private void EndLevel()
 	{
 		SceneManager.LoadScene(4);
+	}
+
+	private IEnumerator StartEvent(int duration)
+	{
+		dialogController.SetText(startText, duration);
+		player.SetInput(false);
+
+		yield return new WaitForSeconds(duration);
+
+		player.SetInput(true);
 	}
 
 	private IEnumerator StatueEvent(int duration)

@@ -2,48 +2,44 @@
 using System.Collections.Generic;
 using Unity.LEGO.Behaviours.Actions;
 using UnityEngine;
+using Cinemachine;
 
 public class EnemySpawner : MonoBehaviour
 {
     public EnemyController enemy;
 
-    public GameObject endPoint;
+	[Range(3,20)]
+	public int vilocity = 10;
 
-	public Transform elevator;
+	public CinemachineSmoothPath path;
 
-	private Vector3 enemyStartPoint;
+	public Transform enemyContainer;
 
-	private void Start()
+	public EnemyManager enemyManager;
+
+	bool generate = true;
+
+	public IEnumerator Generate()
 	{
-		enemyStartPoint = enemy.transform.position;
+		while (generate)
+		{
+			if (enemyManager.enemies.Length < 7)
+			{
+				var newEn = Instantiate(enemy);
 
-		//StartCoroutine(Move());
+				newEn.transform.SetParent(enemyContainer);
+
+				newEn.StartPatrule(path); 
+			}
+
+			yield return new WaitForSeconds(vilocity); 
+		}
 	}
 
-	private IEnumerator Move()
+	public void StopGenerate()
 	{
-		var time = 0f;
+		generate = false;
 
-		yield return new WaitForSeconds(5);
-
-		while (time <1)
-		{
-			time += 0.01f;
-
-			var a = Vector3.Lerp(enemyStartPoint, endPoint.transform.position, time);
-
-			enemy.transform.position = a;
-
-			yield return new WaitForFixedUpdate();
-		}
-
-		yield return new WaitForSeconds(5);
-
-		while (time > 0)
-		{
-			time -= 0.01f;
-
-			var b = Vector3.Lerp(enemyStartPoint, endPoint.transform.position, time);
-		}
+		StopCoroutine(Generate());
 	}
 }

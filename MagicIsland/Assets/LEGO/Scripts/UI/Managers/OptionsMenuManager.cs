@@ -103,6 +103,20 @@ namespace Unity.LEGO.UI
             EventManager.Broadcast(evt);
         }
 
+        public void CustomPauseActivation(bool active)
+        {
+            if (active)
+            {
+                Time.timeScale = 0f;
+
+                EventSystem.current.SetSelectedGameObject(null);
+            }
+            else
+            {
+                Time.timeScale = 1f;
+            }
+        }
+
         void OnShadowsChanged(bool newValue)
         {
             QualitySettings.shadows = newValue ? ShadowQuality.All : ShadowQuality.Disable;

@@ -6,7 +6,7 @@ public class particalController : MonoBehaviour
 {
 	private void OnParticleCollision(GameObject other)
 	{
-		var enemy = other.GetComponent<EnemyController>();
+		var enemy = other.GetComponent<EnemyController>() ?? other.GetComponentInParent<EnemyController>();
 
 		if(enemy != null)
 		{

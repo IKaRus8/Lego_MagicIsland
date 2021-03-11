@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class SlideController : MonoBehaviour
 {
-	public SkillController player;
-
 	public GameObject nearbyTrigger;
 
 	public new CinemachineVirtualCamera camera;
@@ -18,8 +16,6 @@ public class SlideController : MonoBehaviour
 	public bool isSlide;
 
 	private new Rigidbody rigidbody;
-
-	private bool ready;
 
 	int direction
 	{
@@ -52,16 +48,9 @@ public class SlideController : MonoBehaviour
 	{
 		if (isSlide)
 		{
-			if (!ready)
-			{
-				StartSlide();
-			}
-
 			Vector3 toDir = side * direction;
 
 			rigidbody.AddForce((forward + toDir) * Time.deltaTime);
-
-			player.transform.position = transform.position + new Vector3(0,0.5f,0);
 		}
 	}
 
@@ -78,27 +67,14 @@ public class SlideController : MonoBehaviour
 		rigidbody.useGravity = true;
 		camera.gameObject.SetActive(true);
 
-		player.SetInput(false);
-		player.SetAnimatorState(false);
-
-		player.transform.rotation = transform.rotation;
-
-		player.GetComponent<MinifigController>().enabled = false;
-
 		isSlide = true;
-		ready = true;
 	}
 
 	public void StopSlide()
 	{
 		camera.gameObject.SetActive(false);
 
-		player.SetInput(true);
-		player.SetAnimatorState(true);
-		player.GetComponent<MinifigController>().enabled = true;
-
 		isSlide = false;
-		ready = false;
 
 		Destroy(gameObject);
 	}

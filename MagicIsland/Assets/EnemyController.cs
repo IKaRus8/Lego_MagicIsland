@@ -1,35 +1,77 @@
 ﻿using LEGOModelImporter;
 using System.Collections;
-using System.Collections.Generic;
 using Unity.LEGO.Behaviours.Actions;
-using Unity.LEGO.Minifig;
 using UnityEngine;
+using Cinemachine;
+using Unity.LEGO.Behaviours.Triggers;
+using System.Linq;
 
 public class EnemyController : MonoBehaviour
 {
-    private ExplodeAction explode;
+	public int lifeCount = 1;
 
-	private MoveAction moveAction;
+	public bool isDron;
 
-	private LookAtAction lookAtAction;
+	public CinemachineDollyCart dollyCart;
+
+	public ExplodeAction explode;
+
+	public MoveAction moveAction;
+
+	public LookAtAction lookAtAction;
+
+	public ShootAction shootAction;
+	public ShootAction shootAction2;
+
+	private CinemachineSmoothPath _path;
 
 	private void Start()
 	{
-		explode = GetComponentInChildren<ExplodeAction>();
-		moveAction = GetComponentInChildren<MoveAction>();
-		lookAtAction = GetComponentInChildren<LookAtAction>();
+		if (isDron)
+		{
+			dollyCart = GetComponent<CinemachineDollyCart>();
 
+			GetComponentInChildren<NearbyTrigger>().OnActivate += () =>  StartCoroutine(StopPatrule());
+		}
+		
 		explode.CustomEx = true;
 	}
 
 	public void Death()
 	{
-		explode.enabled = true;
+		lifeCount--;
 
-		moveAction.enabled = false;
-		lookAtAction.enabled = false;
+		if (lifeCount == 0)
+		{
+			explode.enabled = true;
 
-		StartCoroutine(Fade());
+			SetState(false);
+
+			StartCoroutine(Fade());
+		}
+	}
+
+	public void SetState(bool value)
+	{
+		if (moveAction != null)
+		{
+			moveAction.enabled = value;
+		}
+
+		if (shootAction != null)
+		{
+			shootAction.enabled = value;
+		}
+
+		if (shootAction2 != null)
+		{
+			shootAction2.enabled = value;
+		}
+
+		if (lookAtAction != null)
+		{
+			lookAtAction.enabled = value; 
+		}
 	}
 
 	private IEnumerator Fade()
@@ -49,5 +91,28 @@ public class EnemyController : MonoBehaviour
 		}
 
 		Destroy(gameObject);
+	}
+
+	public void StartPatrule(CinemachineSmoothPath path)
+	{
+		_path = path;
+
+		transform.position = path.m_Waypoints[0].position;
+
+		dollyCart.m_Path = path;
+		dollyCart.m_Speed = 7;
+	}
+
+	private IEnumerator StopPatrule()
+	{
+		dollyCart.enabled = false;
+
+		Destroy(dollyCart);
+
+		var pos = transform.position;
+
+		yield return new WaitForSeconds(2);
+
+ 		//transform.position = pos;
 	}
 }

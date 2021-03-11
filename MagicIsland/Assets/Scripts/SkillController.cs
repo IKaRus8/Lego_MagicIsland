@@ -14,6 +14,8 @@ public class SkillController : MonoBehaviour
 
     public MinifigController minifig;
 
+    public int minY = -50;
+
     private MinifigFaceAnimationController faceAnimationController;
 
     private Animator animator;
@@ -45,6 +47,11 @@ public class SkillController : MonoBehaviour
 			{
 				Fire();
 			}
+        }
+
+        if(transform.position.y < minY)
+		{
+            minifig.Explode();
         }
     }
 

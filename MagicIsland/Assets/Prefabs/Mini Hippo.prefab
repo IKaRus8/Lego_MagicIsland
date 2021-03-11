@@ -2506,6 +2506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07a5880422d16b4a9a92ad811052d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeCount: 1
 --- !u!1 &1044214889657807918
 GameObject:
   m_ObjectHideFlags: 0
@@ -6619,7 +6620,7 @@ MonoBehaviour:
   m_Brick: {fileID: 7554523638193292382}
   m_BrickPivotOffset: {x: -0.39984134, y: 0.19601333, z: 0.39732134}
   m_Audio: {fileID: 8300000, guid: f364ba34a73ba4aa7b8f0ec418a4f309, type: 3}
-  m_AudioVolume: 1
+  m_AudioVolume: 0.293
   m_Pause: 1
   m_Repeat: 1
   m_Time: 1
@@ -7586,8 +7587,8 @@ MonoBehaviour:
   m_FlashColour: {r: 0.6901961, g: 1.3411765, b: 0.50980395, a: 2}
   m_Brick: {fileID: 1060950272425017793}
   m_BrickPivotOffset: {x: -1.1999604, y: 0.56891596, z: -0.39993918}
-  m_Audio: {fileID: 8300000, guid: e4e105a988a4047bfa9eb7a4e57187a3, type: 3}
-  m_AudioVolume: 0.591
+  m_Audio: {fileID: 8300000, guid: 5c2c11a2856204b4a80c94c0be91fb83, type: 3}
+  m_AudioVolume: 0.26
   m_Type: 0
 --- !u!1 &3761995781784437051
 GameObject:
@@ -14324,7 +14325,7 @@ MonoBehaviour:
   m_Brick: {fileID: 4576038135327250471}
   m_BrickPivotOffset: {x: -0.40009862, y: 0.56887513, z: -0.40005106}
   m_Audio: {fileID: 8300000, guid: 9374a527e83004a47aa53135284f2e78, type: 3}
-  m_AudioVolume: 1
+  m_AudioVolume: 0.273
   m_Pause: 1
   m_Repeat: 0
   m_Time: 2
